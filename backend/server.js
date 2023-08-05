@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 // Connect to DB and start server
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.MONGO_URI)
