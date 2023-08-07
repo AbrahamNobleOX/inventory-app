@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoute");
+const errorHandler = require("./middleWare/errorMiddleware");
 
 const app = express();
 
@@ -27,6 +28,9 @@ app.use("/api/users", userRoute);
 app.get("/", (req, res) => {
   res.status(200).json("Home Page Hit!");
 });
+
+// Error Middleware
+app.use(errorHandler);
 
 // Connect to DB and start server
 const PORT = process.env.PORT || 8000;
