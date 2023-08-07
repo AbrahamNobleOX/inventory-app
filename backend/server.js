@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const userRoute = require("./routes/userRoute");
 
 const app = express();
 
@@ -19,9 +20,12 @@ app.use(
   })
 );
 
+// Routes Middleware
+app.use("/api/users", userRoute);
+
 // Routes
 app.get("/", (req, res) => {
-  res.status(200).json("Home Page");
+  res.status(200).json("Home Page Hit!");
 });
 
 // Connect to DB and start server
