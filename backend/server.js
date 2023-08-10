@@ -3,13 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+dotenv.config();
 const userRoute = require("./routes/userRoute");
 const errorHandler = require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
+const productRoute = require("./routes/productRoute");
+const path = require("path");
 
 const app = express();
-
-dotenv.config();
 
 // Middlewares
 app.use(express.json());
@@ -23,8 +24,11 @@ app.use(
   })
 );
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Routes Middleware
 app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 // Routes
 app.get("/", (req, res) => {
