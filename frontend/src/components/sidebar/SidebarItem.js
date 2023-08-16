@@ -17,7 +17,11 @@ const SidebarItem = ({ item, isOpen }) => {
       >
         <div className="sidebar-title">
           <span>
-            {item.icon && <div className="icon">{item.icon}</div>}
+            {item.icon && (
+              // <div className="icon" style={{ display: isOpen ? "" : "none" }}>
+              // <div className="icon" onClick={() => setExpandMenu(!expandMenu)}>
+              <div className="icon">{item.icon}</div>
+            )}
             {isOpen && <div>{item.title}</div>}
           </span>
           <MdKeyboardArrowRight

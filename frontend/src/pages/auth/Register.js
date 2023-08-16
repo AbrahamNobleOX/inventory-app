@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styles from "./auth.module.scss";
 import { TiUserAddOutline } from "react-icons/ti";
 import Card from "../../components/card/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { registerUser, validateEmail } from "../../services/authService";
+import { useDispatch } from "react-redux";
+import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 
 const initialState = {
   name: "",
@@ -12,12 +16,51 @@ const initialState = {
 };
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
   const { name, email, password, password2 } = formData;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setformData({ ...formData, [name]: value });
+  };
+
+  const register = async (e) => {
+    e.preventDefault();
+
+    if (!name || !email || !password) {
+      return toast.error("All fields are required");
+    }
+    if (password.length < 6) {
+      return toast.error("Passwords must be up to 6 characters");
+    }
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    }
+    if (password !== password2) {
+      return toast.error("Passwords do not match");
+    }
+
+    const userData = {
+      name,
+      email,
+      password,
+    };
+
+    setIsLoading(true);
+
+    const data = await registerUser(userData);
+
+    if (data) {
+      console.log(data);
+      dispatch(SET_LOGIN(true));
+      dispatch(SET_NAME(data.name));
+      navigate("/dashboard");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -29,7 +72,7 @@ const Register = () => {
           </div>
           <h2>Register</h2>
 
-          <form>
+          <form onSubmit={register}>
             <input
               type="text"
               placeholder="Name"
