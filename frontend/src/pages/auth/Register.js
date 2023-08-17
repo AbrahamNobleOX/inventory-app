@@ -62,6 +62,8 @@ const Register = () => {
       navigate("/dashboard");
       setIsLoading(false);
     }
+
+    setIsLoading(false);
   };
 
   return (
