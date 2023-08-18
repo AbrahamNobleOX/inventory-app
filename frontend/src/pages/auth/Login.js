@@ -3,6 +3,7 @@ import styles from "./auth.module.scss";
 import { BiLogIn } from "react-icons/bi";
 import Card from "../../components/card/Card";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { loginUser, validateEmail } from "../../services/authService";
 import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
