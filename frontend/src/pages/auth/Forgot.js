@@ -4,7 +4,10 @@ import { AiOutlineMail } from "react-icons/ai";
 import Card from "../../components/card/Card";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { forgotPassword, validateEmail } from "../../services/authService";
+import {
+  forgotPassword,
+  validateEmail,
+} from "../../redux/services/authService";
 
 const Forgot = () => {
   const [email, setEmail] = useState("");

@@ -4,7 +4,7 @@ import { TiUserAddOutline } from "react-icons/ti";
 import Card from "../../components/card/Card";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { registerUser, validateEmail } from "../../services/authService";
+import { registerUser, validateEmail } from "../../redux/services/authService";
 import { useDispatch } from "react-redux";
 import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";

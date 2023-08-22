@@ -5,7 +5,7 @@ import Card from "../../components/card/Card";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { loginUser, validateEmail } from "../../services/authService";
+import { loginUser, validateEmail } from "../../redux/services/authService";
 import { SET_LOGIN, SET_NAME } from "../../redux/features/auth/authSlice";
 import Loader from "../../components/loader/Loader";
 

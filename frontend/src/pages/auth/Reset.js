@@ -4,7 +4,7 @@ import { MdPassword } from "react-icons/md";
 import Card from "../../components/card/Card";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { resetPassword } from "../../services/authService";
+import { resetPassword } from "../../redux/services/authService";
 
 const initialState = {
   password: "",
