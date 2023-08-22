@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import productService from "./productService";
+import { toast } from "react-toastify";
 
 const initialState = {
   product: null,
@@ -60,5 +61,7 @@ const productSlice = createSlice({
 });
 
 export const { CALC_STORE_VALUE } = productSlice.actions;
+
+export const selectIsLoading = (state) => state.product.isLoading;
 
 export default productSlice.reducer;
