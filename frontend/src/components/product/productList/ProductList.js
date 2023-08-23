@@ -4,6 +4,12 @@ import "./productList.scss";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Search from "../../search/Search";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FILTER_PRODUCTS,
+  selectFilteredPoducts,
+} from "../../../redux/features/product/filterSlice";
 
 const ProductList = ({ products, isLoading }) => {
   const shortenText = (text, n) => {
@@ -14,6 +20,15 @@ const ProductList = ({ products, isLoading }) => {
     return text;
   };
 
+  const [search, setSearch] = useState("");
+  const filteredProducts = useSelector(selectFilteredPoducts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(FILTER_PRODUCTS({ products, search }));
+  }, [products, search, dispatch]);
+
   return (
     <div className="product-list">
       <hr />
@@ -23,7 +38,10 @@ const ProductList = ({ products, isLoading }) => {
             <h3>Inventory Items</h3>
           </span>
           <span>
-            <h3>Search Products</h3>
+            <Search
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </span>
         </div>
 
@@ -47,7 +65,7 @@ const ProductList = ({ products, isLoading }) => {
               </thead>
 
               <tbody>
-                {products.map((product, index) => {
+                {filteredProducts.map((product, index) => {
                   const { _id, name, category, price, quantity } = product;
                   return (
                     <tr key={_id}>
