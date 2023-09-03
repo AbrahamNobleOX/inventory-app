@@ -7,6 +7,7 @@ import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
 import { updateUser } from "../../redux/services/authService";
 import { toast } from "react-toastify";
+import ChangePassword from "../../components/changePassword/ChangePassword";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -140,6 +141,8 @@ const EditProfile = () => {
           </span>
         </form>
       </Card>
+      <br />
+      <ChangePassword />
     </div>
   );
 };

@@ -75,7 +75,7 @@ const Contact = () => {
               </span>
               <span>
                 <FaTwitter />
-                <p>@ZinoTrust</p>
+                <p>@SeyiiiAbraham</p>
               </span>
             </div>
           </Card>
